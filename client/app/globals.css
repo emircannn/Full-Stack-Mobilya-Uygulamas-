@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+ }
+
+ /** Sroll */ 
+ ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #020225;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e09e2a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f3ac30;
+}
+
+.hideScroll::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hideScrollRes::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.container-wrapper {
+  @apply xl:w-[1200px] 1336:w-[1280px] w-full max-xl:px-[20px] max-md:px-[10px] mx-auto
+}
+
+.animate-fade {
+  animation: fade 0.3s linear;
+}
+.animate-search {
+  animation: search 0.3s linear;
+}
+
+.animate-grow {
+  animation: grow 0.3s linear;
+}
+
+.animate-dropTop {
+  animation: dropTop 0.3s linear;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes grow {
+  0% {
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes search {
+  0% {
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 40px;
+    opacity: 1;
+  }
+}
+
+@keyframes dropTop {
+  0% {
+    transform: translateY(-100%) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+.underline-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 0;
+  height: 2px;
+  background-color: #e09e2a;
+  transition: width 0.3s ease; 
+}
+
+.underline-hover:hover::after {
+  width: 100%; 
+}
+
+.categories-shadow {
+  box-shadow: 0px 24px 20px -20px rgba(0,0,0,0.1);
+}
+
+.slider-size {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.slider-padding {
+  padding-right: 43px;
+  padding-left: 43px;
+}
+.slick-list {
+  width: 100%;
+  height: 100%;
+}
+.slick-track {
+  width: 100%;
+  height: 100%;
+}
+.slick-slide > div {
+  width: 100%;
+  height: 100%;
+}
+
+.slick-dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-dots li {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  max-width: 10px;
+  max-height: 10px;
+}
+.slick-dots .slick-active {
+  background-color: #0d074f;
+  border-radius: 50%;
+  max-width: 10px;
+  max-height: 10px;
+}
+
+.slick-dots li button {
+  opacity: 0;
+  width: 10px;
+}

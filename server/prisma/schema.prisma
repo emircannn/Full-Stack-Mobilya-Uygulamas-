@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserType {
+  ADMIN
+  USER
+}
+
+enum Currency {
+  USD
+  SOM
+}
+
+model User {
+  id    Int     @default(autoincrement()) @id
+  email String  @unique
+  name  String
+  surname  String
+  password String
+  phone String @unique
+  gender Boolean? @default(false)
+  isConfirmed Boolean @default(false)
+  role UserType @default(USER)
+  refresh_token String?
+
+  wishlist  Wishlist[]
+
+  creadetAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id])
+}
+
+model Product {
+  id              Int     @default(autoincrement()) @id
+  title           String
+  seo             String @unique
+  model           String @unique
+  currency        Currency @default(SOM)
+  price           Float
+  images          ProductImages[]
+  discount_price  Float?
+  discount_rate   Int
+  newest          Boolean? @default(false)
+  best_seller     Boolean? @default(false)
+
+  wishlist        Wishlist[]
+
+  creadetAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id, seo])
+}
+
+model ProductImages {
+  id       Int      @default(autoincrement()) @id
+  imageUrl String
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+}
+
+model Wishlist {
+  id         Int      @default(autoincrement()) @id
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId  Int
+
+  @@index([productId, userId])
+}
+
+model Category {
+  id              Int         @default(autoincrement()) @id
+  name            String
+  seo             String      @unique
+  image           String
+  parentId        Int?
+  parent          Category?    @relation("ParentCategory", fields: [parentId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  sub_categories  Category[]   @relation("ParentCategory")
+
+  creadetAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parentId, id])
+  @@unique([id, seo])
+}
+
