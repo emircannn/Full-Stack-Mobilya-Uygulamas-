@@ -19,4 +19,4 @@ Bu, full stack bir mobilya uygulamasıdır. Uygulama, Next.js, Nest.js, Prisma v
 Projeyi yerel makinenize klonlamak için aşağıdaki komutu kullanabilirsiniz:
 
 ```bash
-git clone https://github.com/emircannn/mobilya-backend.git
+git clone https://github.com/emircannn/Full-Stack-Mobilya-Uygulamas-.git
